@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Template Form</h1>
+            <p>{{userModel | json}}</p>
+            <form (ngSubmit)="collect_user_data()" #entire_form="ngForm">
+                <div class="mb-3">
+                  <label for="user_name" class="form-label">Name</label>
+                  <input type="text" class="form-control" placeholder="Enter your name" id="user_name" name="user_name" [(ngModel)]="userModel.name" #name="ngModel" required>
+                is it touched ? {{name.touched}}  <br>
+                 is it dirty ? {{name.dirty}}  <br>
+                is it valid ? {{name.valid}}
+                <div *ngIf="name.dirty && name.invalid">
+                  <p class="text-danger">Name is required</p>
+                </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" placeholder="Enter your Email" id="email" name="email" [(ngModel)]="userModel.email" #email="ngModel" required>
+                    is it touched ? {{email.touched}}  <br>
+                    is it dirty ? {{email.dirty}}  <br>
+                   is it valid ? {{email.valid}}
+                   <div *ngIf="email.dirty && email.invalid">
+                    <p class="text-danger">Email is required</p>
+                  </div>
+                  </div>
+
+                  <div class="mb-3">
+                  <select class="form-select" name="city" [(ngModel)]="userModel.city">
+                    <option selected>Open this to select City</option>
+                    <option value="pune">Pune</option>
+                    <option value="thane">Thane</option>
+                    <option value="mumbai">Mumbai</option>
+                  </select>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gender" id="gender" value="m" [(ngModel)]="userModel.gender">
+                    <label class="form-check-label" for="gender">Male</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gender" id="gender" value="f" [(ngModel)]="userModel.gender">
+                    <label class="form-check-label" for="gender">Female</label>
+                  </div>
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Rember Me</label>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="entire_form.form.invalid">Submit</button>
+              </form>
+        </div>
+    </div>
+</div>
